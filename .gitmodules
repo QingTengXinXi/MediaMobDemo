@@ -1,0 +1,3 @@
+[submodule "MediaMob"]
+	path = MediaMob
+	url = https://github.com/QingTengXinXi/MediaMob.git
