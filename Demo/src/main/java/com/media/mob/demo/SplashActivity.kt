@@ -89,15 +89,15 @@ class SplashActivity : AppCompatActivity() {
                     delayedStartMainActivity(1000)
                 }
 
-                viewShowListener = {
+                mediaShowListener = {
                     Log.e(classTarget, "开屏广告展示")
                 }
 
-                viewClickListener = {
+                mediaClickListener = {
                     Log.e(classTarget, "开屏广告点击")
                 }
 
-                viewCloseListener = {
+                mediaCloseListener = {
                     Log.e(classTarget, "开屏广告关闭: $isFinishing")
 
                     if (!isFinishing) {
