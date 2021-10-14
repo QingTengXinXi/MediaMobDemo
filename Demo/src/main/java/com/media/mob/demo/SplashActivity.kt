@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.media.mob.bean.PositionConfig
 import com.media.mob.bean.SlotConfig
-import com.media.mob.bean.SlotTactics
+import com.media.mob.bean.TacticsConfig
+import com.media.mob.bean.TacticsInfo
+import com.media.mob.bean.TacticsType
 import com.media.mob.bean.request.SlotParams
 import com.media.mob.demo.databinding.ActivitySplashBinding
 import com.media.mob.media.view.splash.MobSplash
@@ -37,10 +39,13 @@ class SplashActivity : AppCompatActivity() {
         val positionConfig = PositionConfig(
             "1-1000", "开屏广告", false, SlotConfig(
                 "Splash", arrayListOf(
-                    arrayListOf(
-                        SlotTactics(90, "1111543873", "7021586070555663", IPlatform.PLATFORM_YLH),
-                        SlotTactics(10, "cd5b6b54", "7421681", IPlatform.PLATFORM_BQT),
-                        SlotTactics(10, "5152507", "887486168", IPlatform.PLATFORM_CSJ)
+                    TacticsConfig(
+                        TacticsType.TYPE_WEIGHT,
+                        arrayListOf(
+                            TacticsInfo(10, "cd5b6b54", "7421681", IPlatform.PLATFORM_BQT),
+                            TacticsInfo(45, "1111543873", "7021586070555663", IPlatform.PLATFORM_YLH),
+                            TacticsInfo(45, "5152507", "887486168", IPlatform.PLATFORM_CSJ),
+                        )
                     )
                 )
             )
