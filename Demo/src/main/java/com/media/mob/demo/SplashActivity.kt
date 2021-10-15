@@ -112,6 +112,15 @@ class SplashActivity : AppCompatActivity() {
             slotParams.splashRequestTimeOut = 4000
             slotParams.splashLimitClickArea = true
 
+            /**
+             * 京准通开屏广告的宽高比有限制，这里使用16:9的尺寸
+             */
+            val viewAcceptedWidth = this.resources.displayMetrics.widthPixels.toFloat()
+            val viewAcceptedHeight = viewAcceptedWidth * 16.0F / 9.0F
+
+            slotParams.viewAcceptedWidth = viewAcceptedWidth.transformDiPixels()
+            slotParams.viewAcceptedHeight = viewAcceptedHeight.transformDiPixels()
+
             mobSplash?.requestSplash(slotParams)
         } else {
             startMainActivity()
