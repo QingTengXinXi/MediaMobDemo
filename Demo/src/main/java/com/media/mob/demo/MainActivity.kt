@@ -42,13 +42,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewBinding?.buMainRewardVideoShow?.setOnClickListener {
-            if (mobRewardVideo != null && mobRewardVideo?.checkValidity() == true) {
+            if (mobRewardVideo != null && mobRewardVideo?.checkMediaValidity() == true) {
                 mobRewardVideo?.show()
             } else {
                 Toast.makeText(this, "暂无有效的激励视频广告可供展示，请点击请求激励视频广告按钮后再试！", Toast.LENGTH_LONG).show()
             }
         }
-
 
         viewBinding?.buMainInterstitialRequest?.setOnClickListener {
             requestInterstitial()
@@ -61,7 +60,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "暂无插屏广告可供展示，请点击请求插屏广告按钮后再试！", Toast.LENGTH_LONG).show()
             }
         }
-
     }
 
     private fun requestInterstitial() {
@@ -71,8 +69,9 @@ class MainActivity : AppCompatActivity() {
                     TacticsConfig(
                         TYPE_WEIGHT,
                         arrayListOf(
-                            // TacticsInfo(100, "1111543873", "1072749707937568", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(100, "5152507", "946904190", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo(50, "5152507", "946916292", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo(50, "5152507", "946916307", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo(100, "1111543873", "1072749707937568", IPlatform.PLATFORM_YLH),
                         )
                     )
                 )
@@ -105,9 +104,16 @@ class MainActivity : AppCompatActivity() {
 
         val slotParams = SlotParams()
         slotParams.interstitialFullScreenShow = true
-        slotParams.interstitialNewTemplateExpress = false
-        slotParams.mediaAcceptedWidth = 200F
-        slotParams.mediaAcceptedWidth = 300F
+        slotParams.interstitialNewTemplateExpress = true
+
+        /**
+         * 穿山甲模板渲染的广告比例尺寸为：1:1, 3:2, 2:3，demo中使用 2:3 的尺寸
+         */
+        val mediaAcceptedWidth = resources.displayMetrics.widthPixels.transformPixels() - 16 * 2
+        val mediaAcceptedHeight = mediaAcceptedWidth / 2 * 3
+
+        slotParams.mediaAcceptedWidth = mediaAcceptedWidth
+        slotParams.mediaAcceptedHeight = mediaAcceptedHeight
 
         mobInterstitial?.requestInterstitial(slotParams)
     }
@@ -150,7 +156,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e(classTarget, "激励视频广告关闭")
             }
 
-            rewardedListener = {
+            mediaRewardedListener = {
                 Log.e(classTarget, "激励视频广告发放奖励: $it")
             }
         }

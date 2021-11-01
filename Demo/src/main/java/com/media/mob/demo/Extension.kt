@@ -9,3 +9,7 @@ val density: Float by lazy {
 fun Float.transformDiPixels(): Float {
     return (this * density + 0.5F)
 }
+
+fun Int.transformPixels(): Float {
+    return (this / density + 0.5f)
+}
