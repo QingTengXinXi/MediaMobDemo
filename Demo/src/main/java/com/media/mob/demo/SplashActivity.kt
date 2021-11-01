@@ -42,9 +42,10 @@ class SplashActivity : AppCompatActivity() {
                     TacticsConfig(
                         TacticsType.TYPE_WEIGHT,
                         arrayListOf(
+                            TacticsInfo(10, "806300001", "8063000001", IPlatform.PLATFORM_KS),
                             TacticsInfo(10, "cd5b6b54", "7421681", IPlatform.PLATFORM_BQT),
-                            TacticsInfo(45, "1111543873", "7021586070555663", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(45, "5152507", "887486168", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo(30, "1111543873", "7021586070555663", IPlatform.PLATFORM_YLH),
+                            TacticsInfo(50, "5152507", "887486168", IPlatform.PLATFORM_CSJ),
                         )
                     )
                 )
@@ -107,8 +108,8 @@ class SplashActivity : AppCompatActivity() {
             }
 
             val slotParams = SlotParams()
-            slotParams.splashViewGroup = viewBinding?.clSplashContainer
-            slotParams.splashFullScreen = true
+            slotParams.splashShowViewGroup = viewBinding?.clSplashContainer
+            slotParams.splashFullScreenShow = true
             slotParams.splashRequestTimeOut = 4000
             slotParams.splashLimitClickArea = true
 
@@ -118,8 +119,8 @@ class SplashActivity : AppCompatActivity() {
             val viewAcceptedWidth = this.resources.displayMetrics.widthPixels.toFloat()
             val viewAcceptedHeight = viewAcceptedWidth * 16.0F / 9.0F
 
-            slotParams.viewAcceptedWidth = viewAcceptedWidth.transformDiPixels()
-            slotParams.viewAcceptedHeight = viewAcceptedHeight.transformDiPixels()
+            slotParams.mediaAcceptedWidth = viewAcceptedWidth.transformDiPixels()
+            slotParams.mediaAcceptedHeight = viewAcceptedHeight.transformDiPixels()
 
             mobSplash?.requestSplash(slotParams)
         } else {

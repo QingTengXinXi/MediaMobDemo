@@ -12,6 +12,7 @@ import com.media.mob.bean.TacticsInfo
 import com.media.mob.bean.TacticsType.TYPE_WEIGHT
 import com.media.mob.bean.request.SlotParams
 import com.media.mob.demo.databinding.ActivityMainBinding
+import com.media.mob.media.interstitial.MobInterstitial
 import com.media.mob.media.rewardVideo.MobRewardVideo
 import com.media.mob.platform.IPlatform
 
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private var viewBinding : ActivityMainBinding? = null
 
     private var mobRewardVideo : MobRewardVideo? = null
+
+    private var mobInterstitial : MobInterstitial? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,68 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "暂无有效的激励视频广告可供展示，请点击请求激励视频广告按钮后再试！", Toast.LENGTH_LONG).show()
             }
         }
+
+
+        viewBinding?.buMainInterstitialRequest?.setOnClickListener {
+            requestInterstitial()
+        }
+
+        viewBinding?.buMainInterstitialShow?.setOnClickListener {
+            if (mobInterstitial != null) {
+                mobInterstitial?.show()
+            } else {
+                Toast.makeText(this, "暂无插屏广告可供展示，请点击请求插屏广告按钮后再试！", Toast.LENGTH_LONG).show()
+            }
+        }
+
+    }
+
+    private fun requestInterstitial() {
+        val positionConfig = PositionConfig(
+            "3-1000", "插屏广告", false, SlotConfig(
+                "Interstitial", arrayListOf(
+                    TacticsConfig(
+                        TYPE_WEIGHT,
+                        arrayListOf(
+                            // TacticsInfo(100, "1111543873", "1072749707937568", IPlatform.PLATFORM_YLH),
+                            TacticsInfo(100, "5152507", "946904190", IPlatform.PLATFORM_CSJ),
+                        )
+                    )
+                )
+            )
+        )
+
+        mobInterstitial = MobInterstitial(this@MainActivity, positionConfig).apply {
+            requestSuccessListener = {
+                Log.e(classTarget, "插屏广告请求成功")
+                Toast.makeText(this@MainActivity, "插屏广告请求成功，您可以点击展示插屏广告按钮进行展示！", Toast.LENGTH_LONG).show()
+            }
+
+            requestFailedListener = { code, message ->
+                Log.e(classTarget, "插屏广告请求失败: code=$code, message=$message")
+                Toast.makeText(this@MainActivity, "插屏广告请求失败，Code=$code, Message=$message", Toast.LENGTH_LONG).show()
+            }
+
+            mediaShowListener = {
+                Log.e(classTarget, "插屏广告展示")
+            }
+
+            mediaClickListener = {
+                Log.e(classTarget, "插屏广告点击")
+            }
+
+            mediaCloseListener = {
+                Log.e(classTarget, "插屏广告关闭")
+            }
+        }
+
+        val slotParams = SlotParams()
+        slotParams.interstitialFullScreenShow = true
+        slotParams.interstitialNewTemplateExpress = false
+        slotParams.mediaAcceptedWidth = 200F
+        slotParams.mediaAcceptedWidth = 300F
+
+        mobInterstitial?.requestInterstitial(slotParams)
     }
 
     private fun requestRewardVideo() {
