@@ -43,9 +43,9 @@ class SplashActivity : AppCompatActivity() {
                         TacticsType.TYPE_WEIGHT,
                         arrayListOf(
                             TacticsInfo(10, "806300001", "8063000001", IPlatform.PLATFORM_KS),
-                            TacticsInfo(10, "cd5b6b54", "7421681", IPlatform.PLATFORM_BQT),
+                            TacticsInfo(20, "cd5b6b54", "7421681", IPlatform.PLATFORM_BQT),
                             TacticsInfo(30, "1111543873", "7021586070555663", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(50, "5152507", "887486168", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo(40, "5152507", "887486168", IPlatform.PLATFORM_CSJ),
                         )
                     )
                 )
@@ -61,6 +61,10 @@ class SplashActivity : AppCompatActivity() {
 
         mobSplash?.destroy()
         mobSplash = null
+    }
+
+    override fun onBackPressed() {
+
     }
 
     private fun handlePositionConfig(positionConfig: PositionConfig) {

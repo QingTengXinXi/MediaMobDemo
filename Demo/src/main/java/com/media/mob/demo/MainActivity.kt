@@ -26,6 +26,19 @@ class MainActivity : AppCompatActivity() {
 
     private var mobInterstitial : MobInterstitial? = null
 
+
+    private val interstitial_template_CSJ = ""
+
+    /**
+     * 百青藤新模板插屏广告位
+     */
+    private val interstitial_template_BQT = "7765839"
+
+    /**
+     * 百青藤插屏广告位
+     */
+    private val interstitial_BQT = "7765840"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -69,9 +82,10 @@ class MainActivity : AppCompatActivity() {
                     TacticsConfig(
                         TYPE_WEIGHT,
                         arrayListOf(
-                            TacticsInfo(50, "5152507", "946916292", IPlatform.PLATFORM_CSJ),
-                            TacticsInfo(50, "5152507", "946916307", IPlatform.PLATFORM_CSJ),
-                            TacticsInfo(100, "1111543873", "1072749707937568", IPlatform.PLATFORM_YLH),
+                            TacticsInfo(10, "806300001", "8063000003", IPlatform.PLATFORM_KS),
+                            TacticsInfo(20, "7765839", "cd5b6b54", IPlatform.PLATFORM_BQT),
+                            TacticsInfo(30, "1111543873", "1072749707937568", IPlatform.PLATFORM_YLH),
+                            TacticsInfo(40, "5152507", "946916307", IPlatform.PLATFORM_CSJ),
                         )
                     )
                 )
@@ -125,8 +139,10 @@ class MainActivity : AppCompatActivity() {
                     TacticsConfig(
                         TYPE_WEIGHT,
                         arrayListOf(
-                            TacticsInfo(50, "1111543873", "2042846457377656", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(50, "5152507", "946871312", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo(10, "806300001", "8063000002", IPlatform.PLATFORM_KS),
+                            TacticsInfo(20, "7497884", "cd5b6b54", IPlatform.PLATFORM_BQT),
+                            TacticsInfo(30, "1111543873", "2042846457377656", IPlatform.PLATFORM_YLH),
+                            TacticsInfo(40, "5152507", "946871312", IPlatform.PLATFORM_CSJ),
                         )
                     )
                 )
