@@ -41,11 +41,12 @@ class SplashActivity : AppCompatActivity() {
                 "Splash", arrayListOf(
                     TacticsConfig(
                         TacticsType.TYPE_WEIGHT,
+                        1,
                         arrayListOf(
-                            TacticsInfo(10, "806300001", "8063000001", IPlatform.PLATFORM_KS),
-                            TacticsInfo(20, "cd5b6b54", "7421681", IPlatform.PLATFORM_BQT),
-                            TacticsInfo(30, "1111543873", "7021586070555663", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(40, "5152507", "887486168", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo("806300001", "8063000001", IPlatform.PLATFORM_KS, 10),
+                            TacticsInfo("cd5b6b54", "7421681", IPlatform.PLATFORM_BQT, 10),
+                            TacticsInfo("1111543873", "7021586070555663", IPlatform.PLATFORM_YLH, 20),
+                            TacticsInfo("5152507", "887486168", IPlatform.PLATFORM_CSJ, 60),
                         )
                     )
                 )

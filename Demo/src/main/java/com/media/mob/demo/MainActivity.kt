@@ -9,6 +9,7 @@ import com.media.mob.bean.PositionConfig
 import com.media.mob.bean.SlotConfig
 import com.media.mob.bean.TacticsConfig
 import com.media.mob.bean.TacticsInfo
+import com.media.mob.bean.TacticsType.TYPE_PARALLEL
 import com.media.mob.bean.TacticsType.TYPE_WEIGHT
 import com.media.mob.bean.request.SlotParams
 import com.media.mob.demo.databinding.ActivityMainBinding
@@ -81,11 +82,12 @@ class MainActivity : AppCompatActivity() {
                 "Interstitial", arrayListOf(
                     TacticsConfig(
                         TYPE_WEIGHT,
+                        1,
                         arrayListOf(
-                            TacticsInfo(10, "806300001", "8063000003", IPlatform.PLATFORM_KS),
-                            TacticsInfo(20, "7765839", "cd5b6b54", IPlatform.PLATFORM_BQT),
-                            TacticsInfo(30, "1111543873", "1072749707937568", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(40, "5152507", "946916307", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo("806300001", "8063000003", IPlatform.PLATFORM_KS, 10),
+                            TacticsInfo("7765839", "cd5b6b54", IPlatform.PLATFORM_BQT, 20),
+                            TacticsInfo("1111543873", "1072749707937568", IPlatform.PLATFORM_YLH, 30),
+                            TacticsInfo("5152507", "946916307", IPlatform.PLATFORM_CSJ, 40),
                         )
                     )
                 )
@@ -137,17 +139,22 @@ class MainActivity : AppCompatActivity() {
             "2-1000", "激励视频广告", false, SlotConfig(
                 "RewardVideo", arrayListOf(
                     TacticsConfig(
-                        TYPE_WEIGHT,
+                        TYPE_PARALLEL,
+                        1,
                         arrayListOf(
-                            TacticsInfo(10, "806300001", "8063000002", IPlatform.PLATFORM_KS),
-                            TacticsInfo(20, "7497884", "cd5b6b54", IPlatform.PLATFORM_BQT),
-                            TacticsInfo(30, "1111543873", "2042846457377656", IPlatform.PLATFORM_YLH),
-                            TacticsInfo(40, "5152507", "946871312", IPlatform.PLATFORM_CSJ),
+                            TacticsInfo("5152507", "946871312", IPlatform.PLATFORM_CSJ, 40, 1),
+                            TacticsInfo("1111543873", "2042846457377656", IPlatform.PLATFORM_YLH, 30, 1),
+                            TacticsInfo("806300001", "8063000002", IPlatform.PLATFORM_KS, 20, 2),
+                            TacticsInfo("7781025", "cd5b6b54", IPlatform.PLATFORM_BQT, 10, 3),
                         )
                     )
                 )
             )
         )
+
+        if (mobRewardVideo != null) {
+            mobRewardVideo?.destroy()
+        }
 
         mobRewardVideo = MobRewardVideo(this@MainActivity, positionConfig).apply {
             requestSuccessListener = {
