@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding?.root)
 
         viewBinding?.buMainSplash?.setOnClickListener {
-            startActivity(Intent(this@MainActivity, SplashActivity::class.java))
+            startActivity(Intent(this@MainActivity, SplashConfigActivity::class.java))
         }
 
         viewBinding?.buMainRewardVideoRequest?.setOnClickListener {

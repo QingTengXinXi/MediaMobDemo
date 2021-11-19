@@ -24,6 +24,9 @@
 
         <activity android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+
+        <activity android:name=".SplashConfigActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>

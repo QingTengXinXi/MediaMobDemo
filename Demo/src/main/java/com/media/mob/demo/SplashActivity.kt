@@ -6,12 +6,9 @@ import android.os.Looper
 import android.os.Message
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.media.mob.bean.PositionConfig
-import com.media.mob.bean.SlotConfig
-import com.media.mob.bean.TacticsConfig
-import com.media.mob.bean.TacticsInfo
-import com.media.mob.bean.TacticsType
 import com.media.mob.bean.request.SlotParams
 import com.media.mob.demo.databinding.ActivitySplashBinding
 import com.media.mob.media.view.splash.MobSplash
@@ -27,6 +24,9 @@ class SplashActivity : AppCompatActivity() {
 
     private lateinit var splashHandler: SplashHandler
 
+    private var splashFullScreenShow = false
+    private var splashLimitClickArea = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,24 +34,19 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(viewBinding?.root)
 
-        splashHandler = SplashHandler(this)
 
-        val positionConfig = PositionConfig(
-            "1-1000", "开屏广告", false, SlotConfig(
-                "Splash", arrayListOf(
-                    TacticsConfig(
-                        TacticsType.TYPE_WEIGHT,
-                        1,
-                        arrayListOf(
-                            TacticsInfo("806300001", "8063000001", IPlatform.PLATFORM_KS, 10),
-                            TacticsInfo("cd5b6b54", "7421681", IPlatform.PLATFORM_BQT, 10),
-                            TacticsInfo("1111543873", "7021586070555663", IPlatform.PLATFORM_YLH, 20),
-                            TacticsInfo("5152507", "887486168", IPlatform.PLATFORM_CSJ, 60),
-                        )
-                    )
-                )
-            )
-        )
+        val positionConfig : PositionConfig? = intent.getSerializableExtra("PositionConfig") as PositionConfig?
+
+        splashFullScreenShow = intent.getBooleanExtra("SplashFullScreenShow", false)
+        splashLimitClickArea = intent.getBooleanExtra("SplashLimitClickArea", false)
+
+        if (positionConfig == null) {
+            Toast.makeText(this, "广告位配置异常，请重新配置广告位策略", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        splashHandler = SplashHandler(this)
 
         handlePositionConfig(positionConfig)
         delayedStartMainActivity(5000)
@@ -114,9 +109,9 @@ class SplashActivity : AppCompatActivity() {
 
             val slotParams = SlotParams()
             slotParams.splashShowViewGroup = viewBinding?.clSplashContainer
-            slotParams.splashFullScreenShow = true
+            slotParams.splashFullScreenShow = splashFullScreenShow
             slotParams.splashRequestTimeOut = 4000
-            slotParams.splashLimitClickArea = true
+            slotParams.splashLimitClickArea = splashLimitClickArea
 
             /**
              * 京准通开屏广告的宽高比有限制，这里使用16:9的尺寸
