@@ -71,6 +71,8 @@ class SplashConfigActivity : AppCompatActivity() {
         }
 
         viewBinding?.tvSplashConfigInsert?.setOnClickListener {
+            tacticsInfoConfigDialog.insertSlotType("RewardVideo")
+
             if (tacticsInfoConfigDialog.isAdded) {
                 tacticsInfoConfigDialog.showsDialog = true
             } else {

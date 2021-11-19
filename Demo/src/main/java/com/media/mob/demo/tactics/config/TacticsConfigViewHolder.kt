@@ -20,7 +20,7 @@ class TacticsConfigViewHolder(private val viewBinding: ItemTasticsConfigBinding)
     }
 
     @SuppressLint("SetTextI18n")
-    fun bind(tacticsConfig: TacticsConfig, position: Int) = with(itemView) {
+    fun bind(tacticsConfig: TacticsConfig) = with(itemView) {
         viewBinding.tvTacticsConfigType.text = when (tacticsConfig.tacticsType) {
             TacticsType.TYPE_WEIGHT -> {
                 "策略类型: 权重"
@@ -32,8 +32,6 @@ class TacticsConfigViewHolder(private val viewBinding: ItemTasticsConfigBinding)
                 "策略类型: 并行"
             }
         }
-
-        viewBinding.tvTacticsConfigSequence.text = "序列: ${position + 1} "
 
         tacticsType = tacticsConfig.tacticsType
 

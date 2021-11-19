@@ -22,7 +22,7 @@ class TacticsConfigAdapter(private val tacticsConfigList: ArrayList<TacticsConfi
         val tacticsConfig = tacticsConfigList[position]
 
         if (holder is TacticsConfigViewHolder) {
-            holder.bind(tacticsConfig, position)
+            holder.bind(tacticsConfig)
         }
     }
 

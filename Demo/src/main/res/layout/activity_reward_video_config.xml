@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cl_splash_config_container"
+    android:id="@+id/cl_reward_video_config_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -10,7 +10,7 @@
     tools:ignore="HardcodedText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_splash_config_header"
+        android:id="@+id/cl_reward_video_config_header"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_splash_config_back"
+            android:id="@+id/iv_reward_video_config_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/app_name"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="开屏广告配置"
+            android:text="激励视频广告配置"
             android:textColor="#212121"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -48,85 +48,72 @@
         android:background="#A1A1A1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_splash_config_header" />
+        app:layout_constraintTop_toBottomOf="@id/cl_reward_video_config_header" />
 
     <TextView
-        android:id="@+id/tv_splash_config_config"
+        android:id="@+id/tv_reward_video_config_config"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="开屏广告配置"
+        android:text="激励视频广告配置"
         android:textColor="#212121"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_splash_config_header" />
+        app:layout_constraintTop_toBottomOf="@id/cl_reward_video_config_header" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_splash_config_config"
+        android:id="@+id/cl_reward_video_config_config"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="#F0F0F0"
-        app:layout_constraintTop_toBottomOf="@id/tv_splash_config_config">
+        app:layout_constraintTop_toBottomOf="@id/tv_reward_video_config_config">
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/sc_splash_config_full_screen"
+            android:id="@+id/sc_reward_video_config_mute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:background="@drawable/shape_media_config"
             android:padding="8dp"
-            android:text="全屏展示"
+            android:text="静音播放"
             android:textColor="#757575"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/sc_splash_config_limit_click_area"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/shape_media_config"
-            android:padding="8dp"
-            android:text="限制点击区域"
-            android:textColor="#757575"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/sc_splash_config_full_screen"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
-        android:id="@+id/fl_splash_config_result"
+        android:id="@+id/fl_reward_video_config_result"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_splash_config_insert"
+        app:layout_constraintBottom_toTopOf="@id/tv_reward_video_config_insert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_splash_config_config">
+        app:layout_constraintTop_toBottomOf="@id/cl_reward_video_config_config">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_splash_config_result"
+            android:id="@+id/rv_reward_video_config_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_splash_config_empty"
+            android:id="@+id/cl_reward_video_config_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible">
 
             <ImageView
-                android:id="@+id/iv_splash_config_empty_image"
+                android:id="@+id/iv_reward_video_config_empty_image"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
                 android:contentDescription="@string/app_name"
@@ -137,7 +124,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_splash_config_empty_prompt"
+                android:id="@+id/tv_reward_video_config_empty_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="12dp"
@@ -147,13 +134,13 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_splash_config_empty_image" />
+                app:layout_constraintTop_toBottomOf="@id/iv_reward_video_config_empty_image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_splash_config_insert"
+        android:id="@+id/tv_reward_video_config_insert"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -165,12 +152,12 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/tv_splash_config_request"
+        app:layout_constraintBottom_toTopOf="@id/tv_reward_video_config_request"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tv_splash_config_request"
+        android:id="@+id/tv_reward_video_config_request"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -178,7 +165,24 @@
         android:layout_marginBottom="12dp"
         android:background="@drawable/shape_tactics_type_checked"
         android:gravity="center"
-        android:text="请求开屏广告"
+        android:text="请求激励视频广告"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tv_reward_video_config_show"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_reward_video_config_show"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shape_tactics_type_checked"
+        android:gravity="center"
+        android:text="展示激励视频广告"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"

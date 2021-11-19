@@ -51,16 +51,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, SplashConfigActivity::class.java))
         }
 
-        viewBinding?.buMainRewardVideoRequest?.setOnClickListener {
-            requestRewardVideo()
-        }
-
-        viewBinding?.buMainRewardVideoShow?.setOnClickListener {
-            if (mobRewardVideo != null && mobRewardVideo?.checkMediaValidity() == true) {
-                mobRewardVideo?.show()
-            } else {
-                Toast.makeText(this, "暂无有效的激励视频广告可供展示，请点击请求激励视频广告按钮后再试！", Toast.LENGTH_LONG).show()
-            }
+        viewBinding?.buMainRewardVideo?.setOnClickListener {
+            startActivity(Intent(this@MainActivity, RewardVideoConfigActivity::class.java))
         }
 
         viewBinding?.buMainInterstitialRequest?.setOnClickListener {
@@ -132,60 +124,5 @@ class MainActivity : AppCompatActivity() {
         slotParams.mediaAcceptedHeight = mediaAcceptedHeight
 
         mobInterstitial?.requestInterstitial(slotParams)
-    }
-
-    private fun requestRewardVideo() {
-        val positionConfig = PositionConfig(
-            "2-1000", "激励视频广告", false, SlotConfig(
-                "RewardVideo", arrayListOf(
-                    TacticsConfig(
-                        TYPE_PARALLEL,
-                        1,
-                        arrayListOf(
-                            TacticsInfo("5152507", "946871312", IPlatform.PLATFORM_CSJ, 40, 1),
-                            TacticsInfo("1111543873", "2042846457377656", IPlatform.PLATFORM_YLH, 30, 1),
-                            TacticsInfo("806300001", "8063000002", IPlatform.PLATFORM_KS, 20, 2),
-                            TacticsInfo("7781025", "cd5b6b54", IPlatform.PLATFORM_BQT, 10, 3),
-                        )
-                    )
-                )
-            )
-        )
-
-        if (mobRewardVideo != null) {
-            mobRewardVideo?.destroy()
-        }
-
-        mobRewardVideo = MobRewardVideo(this@MainActivity, positionConfig).apply {
-            requestSuccessListener = {
-                Log.e(classTarget, "激励视频广告请求成功")
-                Toast.makeText(this@MainActivity, "激励视频广告请求成功，您可以点击展示激励视频广告按钮进行展示！", Toast.LENGTH_LONG).show()
-            }
-
-            requestFailedListener = { code, message ->
-                Log.e(classTarget, "激励视频广告请求失败: code=$code, message=$message")
-                Toast.makeText(this@MainActivity, "激励视频广告请求失败，Code=$code, Message=$message", Toast.LENGTH_LONG).show()
-            }
-
-            mediaShowListener = {
-                Log.e(classTarget, "激励视频广告展示")
-            }
-
-            mediaClickListener = {
-                Log.e(classTarget, "激励视频广告点击")
-            }
-
-            mediaCloseListener = {
-                Log.e(classTarget, "激励视频广告关闭")
-            }
-
-            mediaRewardedListener = {
-                Log.e(classTarget, "激励视频广告发放奖励: $it")
-            }
-        }
-
-        val slotParams = SlotParams()
-
-        mobRewardVideo?.requestRewardVideo(slotParams)
     }
 }

@@ -102,11 +102,9 @@ class TacticsInfoCheckDialog : DialogFragment() {
     }
 
     fun insertSlotType(slotType: String) {
-        if (this.slotType == "" || this.slotType != slotType) {
-            this.slotType = slotType
+        this.slotType = slotType
 
-            changeSlotInfoCheckList()
-        }
+        changeSlotInfoCheckList()
     }
 
     private fun changeSlotInfoCheckList() {
@@ -114,10 +112,14 @@ class TacticsInfoCheckDialog : DialogFragment() {
 
         when (slotType) {
             "Splash" -> {
-                tacticsInfoList.addAll(TacticsInfoConfigHelper.splashTacticsInfoList)
+                TacticsInfoConfigHelper.splashTacticsInfoList.forEach {
+                    tacticsInfoList.add(TacticsInfo(it.thirdAppId, it.thirdSlotId, it.thirdPlatformName))
+                }
             }
             "RewardVideo" -> {
-
+                TacticsInfoConfigHelper.rewardVideoTacticsInfoList.forEach {
+                    tacticsInfoList.add(TacticsInfo(it.thirdAppId, it.thirdSlotId, it.thirdPlatformName))
+                }
             }
             "Interstitial" -> {
 

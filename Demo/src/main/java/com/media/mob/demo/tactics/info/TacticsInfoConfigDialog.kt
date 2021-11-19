@@ -25,9 +25,9 @@ class TacticsInfoConfigDialog : DialogFragment() {
 
     private lateinit var viewBinding: DialogTacticsInfoConfigBinding
 
-    private val tacticsInfoList: ArrayList<TacticsInfo> by lazy {
-        ArrayList()
-    }
+    private val tacticsInfoList: ArrayList<TacticsInfo> = arrayListOf()
+
+    private var slotType: String? = null
 
     private var tacticsConfig: TacticsConfig? = null
 
@@ -138,20 +138,20 @@ class TacticsInfoConfigDialog : DialogFragment() {
                 }
                 R.id.rb_tactics_config_priority -> {
                     tacticsConfig?.tacticsType = TacticsType.TYPE_PRIORITY
+                    tacticsConfig?.tacticsPriorityReturn = false
 
                     tacticsInfoAdapter.insertTacticsType(TacticsType.TYPE_PRIORITY)
                     simpleItemTouchHelper.insertLongPressDragEnable(true)
 
-                    viewBinding.clTacticsConfigOther.visibility = View.VISIBLE
+                    viewBinding.clTacticsConfigOther.visibility = View.GONE
                 }
                 R.id.rb_tactics_config_parallel -> {
                     tacticsConfig?.tacticsType = TacticsType.TYPE_PARALLEL
-                    tacticsConfig?.tacticsPriorityReturn = false
 
                     tacticsInfoAdapter.insertTacticsType(TacticsType.TYPE_PARALLEL)
                     simpleItemTouchHelper.insertLongPressDragEnable(false)
 
-                    viewBinding.clTacticsConfigOther.visibility = View.GONE
+                    viewBinding.clTacticsConfigOther.visibility = View.VISIBLE
                 }
             }
         }
@@ -163,7 +163,7 @@ class TacticsInfoConfigDialog : DialogFragment() {
 
         viewBinding.tvTacticsConfigInsert.setOnClickListener {
 
-            tacticsInfoCheckDialog.insertSlotType("Splash")
+            tacticsInfoCheckDialog.insertSlotType(slotType ?: "")
             tacticsInfoCheckDialog.insertCheckedTacticsInfoList(tacticsInfoList)
 
             if (tacticsInfoCheckDialog.isAdded) {
@@ -224,5 +224,9 @@ class TacticsInfoConfigDialog : DialogFragment() {
             viewBinding.clTacticsConfigEmpty.visibility = View.GONE
             viewBinding.rvTacticsConfigList.visibility = View.VISIBLE
         }
+    }
+
+    fun insertSlotType(slotType: String) {
+        this.slotType = slotType
     }
 }
