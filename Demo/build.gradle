@@ -7,7 +7,7 @@ android {
   compileSdk 30
 
   defaultConfig {
-    applicationId "com.crazy.money"
+    applicationId "com.media.mob.demo"
     minSdk 21
     targetSdk 30
     versionCode 1
@@ -16,7 +16,7 @@ android {
 
   signingConfigs {
     release {
-      storeFile file('/Users/Youth-Lei/Downloads/iMoney.jks')
+      storeFile file('填写您的签名文件路径')
       storePassword STORE_PASSWORD
       keyAlias STORE_KEY_ALIAS
       keyPassword STORE_KEY_PASSWORD
