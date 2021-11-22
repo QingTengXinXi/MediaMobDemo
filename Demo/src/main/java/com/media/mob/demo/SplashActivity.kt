@@ -71,16 +71,8 @@ class SplashActivity : AppCompatActivity() {
 
                     Log.e(classTarget, "开屏广告请求成功")
 
-                    if (this.platformName == IPlatform.PLATFORM_CSJ) {
-                        if (this.parent != null && this.parent is ViewGroup) {
-                            (this.parent as ViewGroup).removeView(this)
-                        }
-
-                        if (this.parent == null) {
-                            viewBinding?.clSplashContainer?.addView(this)
-                        } else {
-                            delayedStartMainActivity(1000)
-                        }
+                    viewBinding?.clSplashContainer?.let {
+                        mobSplash?.show(it)
                     }
                 }
 
@@ -108,7 +100,6 @@ class SplashActivity : AppCompatActivity() {
             }
 
             val slotParams = SlotParams()
-            slotParams.splashShowViewGroup = viewBinding?.clSplashContainer
             slotParams.splashFullScreenShow = splashFullScreenShow
             slotParams.splashRequestTimeOut = 4000
             slotParams.splashLimitClickArea = splashLimitClickArea
